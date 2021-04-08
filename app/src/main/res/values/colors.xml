@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <color name="colorPrimary">#752fbd</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="background">#131c21</color>
+<!--    <color name="colorAccent">#2A99E3</color>-->
+    <color name="textColorPrimary">#FFFFFF</color>
+    <color name="cardColor">#FFFFFF</color>
+    <color name="popupColor">#e2e4fe</color>
+    <color name="Red">#D31616</color>
+    <color name="pink">#D5335A</color>
+    <color name="colorAccent">@color/Red</color>
+    <color name="green">#2EA50E</color>
+    <color name="gray">#A3A5A2</color>
+</resources>

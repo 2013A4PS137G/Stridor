@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "594278890742",
+    "project_id": "stridor-app",
+    "storage_bucket": "stridor-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:594278890742:android:86692bc041cdc3be6e40d7",
+        "android_client_info": {
+          "package_name": "com.example.stridor_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "594278890742-ctes8cm61b5ov5uak8lln346qbc14j5j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4KAWSLbWaT_enaluQl65lqM1TSy0tccs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "594278890742-ctes8cm61b5ov5uak8lln346qbc14j5j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

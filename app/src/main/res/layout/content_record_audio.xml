@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <TextView
+        android:id="@+id/instruction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="Capture audio by hitting the record button."
+        android:textAlignment="center"
+        android:textColor="@color/Red"
+        android:textStyle="bold"
+        android:textSize="18sp"/>
+
+    <com.github.ybq.android.spinkit.SpinKitView
+        android:id="@+id/spin_kit"
+        style="@style/SpinKitView.Large.Wave"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        app:SpinKit_Color="@color/colorAccent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/instruction"/>
+
+    <TextView
+        android:id="@+id/timer_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="20dp"
+        android:text="00:00"
+        android:textColor="@color/textColorPrimary"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spin_kit"/>
+
+    <SeekBar
+        android:id="@+id/progressbar"
+        android:progressBackgroundTint="@color/textColorPrimary"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="15dp"
+        android:progressDrawable="@drawable/red_scrubber_progress"
+        android:thumb="@drawable/red_scrubber_control"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toRightOf="@id/timer_text"
+        app:layout_constraintRight_toLeftOf="@id/text4"
+        app:layout_constraintTop_toBottomOf="@id/spin_kit" />
+
+    <TextView
+        android:id="@+id/text4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/textColorPrimary"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:text="01:00"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spin_kit"/>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="8dp"
+        android:text="Audio Record controls"
+        android:textColor="@color/textColorPrimary"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressbar" />
+
+    <ImageButton
+        android:id="@+id/rec_btn"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/enabled_disabled_btn"
+        android:src="@drawable/ic_mic_white_24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.375"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView4"
+        app:layout_constraintVertical_bias="0.005" />
+
+    <ImageButton
+        android:id="@+id/stop_btn"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/enabled_disabled_btn"
+        android:src="@drawable/ic_baseline_stop_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintVertical_bias="0.005"
+        app:layout_constraintLeft_toRightOf="@id/rec_btn"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView4" />
+
+<!--    <ImageButton-->
+<!--        android:id="@+id/cancel_btn"-->
+<!--        android:layout_width="40dp"-->
+<!--        android:layout_height="40dp"-->
+<!--        android:layout_marginTop="14dp"-->
+<!--        android:layout_marginLeft="30dp"-->
+<!--        android:background="@drawable/orange_circle"-->
+<!--        android:backgroundTint="@color/Red"-->
+<!--        android:src="@android:drawable/ic_menu_close_clear_cancel"-->
+<!--        app:layout_constraintLeft_toRightOf="@id/rec_btn"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/progressbar" />-->
+
+    <Button
+        android:id="@+id/pause_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:background="@drawable/ripple_effect1"
+        android:drawableLeft="@drawable/ic_baseline_pause_24"
+        android:padding="10dp"
+        android:text="Pause"
+        android:drawableTint="#000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.124"
+        app:layout_constraintLeft_toRightOf="@id/play_btn"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rec_done"
+        app:layout_constraintVertical_bias="0.184" />
+
+    <Button
+        android:id="@+id/play_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:background="@drawable/ripple_effect1"
+        android:drawableLeft="@drawable/ic_baseline_play_arrow_24"
+        android:padding="10dp"
+        android:text="Play"
+        android:drawableTint="@color/green"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.33"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rec_done"
+        app:layout_constraintVertical_bias="0.184" />
+
+<!--    <Button-->
+<!--        android:id="@+id/reset_btn"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:background="@drawable/ripple_effect1"-->
+<!--        android:padding="10dp"-->
+<!--        android:text="Reset"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.283"-->
+<!--        app:layout_constraintLeft_toRightOf="@id/pause_btn"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/rec_done"-->
+<!--        app:layout_constraintVertical_bias="0.084" />-->
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Record"
+        android:textColor="@color/textColorPrimary"
+        app:layout_constraintEnd_toEndOf="@+id/rec_btn"
+        app:layout_constraintStart_toStartOf="@+id/rec_btn"
+        app:layout_constraintTop_toBottomOf="@+id/rec_btn" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Stop"
+        android:textColor="@color/textColorPrimary"
+        app:layout_constraintEnd_toEndOf="@+id/stop_btn"
+        app:layout_constraintStart_toStartOf="@+id/stop_btn"
+        app:layout_constraintTop_toBottomOf="@+id/stop_btn" />
+
+    <LinearLayout
+        android:id="@+id/rec_done"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rec_btn"
+        app:layout_constraintVertical_bias="0.450">
+
+        <Button
+            android:clickable="false"
+            android:layout_width="250dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/ripple_effect_2"
+            android:paddingHorizontal="20dp"
+            android:text="Audio captured succesfully"
+            android:textColor="@color/textColorPrimary"
+            android:drawableLeft="@drawable/ic_baseline_keyboard_arrow_down_24"
+             />
+
+        <Button
+            android:layout_marginLeft="20dp"
+            android:id="@+id/done_btn"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/ripple_effect_3"
+            android:backgroundTint="@color/green"
+            android:drawableLeft="@drawable/ic_round_done_24"
+            android:paddingHorizontal="20dp"
+            android:text="Continue"
+            android:textColor="@color/textColorPrimary"
+            android:layout_marginEnd="-1dp"
+             />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/instruction2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="To redo Record again"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/Red"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pause_btn" />
+
+    <androidx.constraintlayout.widget.Group
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="rec_done,instruction2,play_btn,pause_btn"
+        android:id="@+id/group" />
+</androidx.constraintlayout.widget.ConstraintLayout>

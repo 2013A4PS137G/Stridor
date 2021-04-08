@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/popup_backg"
+            android:padding="25dp">
+
+<!--            <TextView-->
+<!--                android:layout_margin="10dp"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Recording ID*"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textSize="16sp"-->
+<!--                android:textColor="@color/colorPrimary"/>-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:hint="@string/shr_hint_rec_name"
+                    android:layout_weight="1"
+                    >
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/rec_id_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:maxLines="1" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select Activity"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="@color/colorPrimary"/>
+            <Spinner
+                android:id="@+id/task_dropdown"
+                android:layout_width="fill_parent"
+                android:layout_marginHorizontal="10dp"
+                android:layout_height="50dp"
+                android:drawSelectorOnTop="true"
+                android:prompt="@string/shr_hint_task"
+                android:entries="@array/activityDropdown"
+                android:spinnerMode="dialog"
+                />
+
+            <TextView
+                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select Media"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="@color/colorPrimary"/>
+            <Spinner
+                android:id="@+id/media_dropdown"
+                android:layout_width="fill_parent"
+                android:layout_marginHorizontal="10dp"
+                android:layout_height="50dp"
+                android:drawSelectorOnTop="true"
+                android:prompt="@string/shr_hint_media"
+                android:entries="@array/mediaDropdown"
+                android:spinnerMode="dialog"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    android:gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:id="@+id/next_button"
+                    android:layout_width="110dp"
+                    android:layout_height="45dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:text="@string/shr_button_next"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:background="@drawable/ripple_effect"/>
+
+                <TextView
+                    android:id="@+id/cancel_button"
+                    android:layout_width="70dp"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_toStartOf="@+id/next_button"
+                    android:layout_toLeftOf="@+id/next_button"
+                    android:text="@string/shr_button_cancel"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorAccent"
+                    android:clickable="true"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+</LinearLayout>
