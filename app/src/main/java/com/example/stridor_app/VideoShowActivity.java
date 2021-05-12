@@ -7,9 +7,15 @@ import android.os.Bundle;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
+/**
+ * Activity for Video Playback
+ */
 public class VideoShowActivity extends AppCompatActivity {
     private VideoView videoView;
 
+    /**
+     * Executes when page is opened
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -10,6 +10,9 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
 
+/**
+ * TODO: Show Settings for a User, display/edit metadata, delete user
+ */
 public class SettingsActivity extends AppCompatActivity {
 
     @Override

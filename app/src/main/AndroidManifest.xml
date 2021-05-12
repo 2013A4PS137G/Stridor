@@ -25,7 +25,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".VideoCaptureActivity" />
+                android:value=".UserActivity" />
         </activity>
         <activity
             android:name=".InfoActivity"
@@ -37,26 +37,26 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".VideoCaptureActivity" />
+                android:value=".UserActivity" />
         </activity>
         <activity android:name=".VideoShowActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".VideoCaptureActivity" />
+                android:value=".UserActivity" />
         </activity>
         <activity
-            android:name=".VideoCaptureActivity"
+            android:name=".UserActivity"
             android:configChanges="keyboard|keyboardHidden|orientation"
-            android:label="@string/title_activity_video_capture"
+            android:label="@string/title_activity_user"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".UsersActivity" />
         </activity>
         <activity
-            android:name=".MainActivity"
-            android:label="@string/title_activity_main"
+            android:name=".UsersActivity"
+            android:label="@string/title_activity_users"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data

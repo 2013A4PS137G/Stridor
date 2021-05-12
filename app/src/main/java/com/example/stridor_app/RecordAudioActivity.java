@@ -28,6 +28,9 @@ import com.github.ybq.android.spinkit.SpinKitView;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Activity to help user record audio; check permissions, controls for record and pause, playback for recorded audio
+ */
 public class RecordAudioActivity extends AppCompatActivity implements View.OnClickListener{
 
     private SeekBar prog_bar;
@@ -45,6 +48,9 @@ public class RecordAudioActivity extends AppCompatActivity implements View.OnCli
     private static String audioFile = null;
     SpinKitView spinKitView;
 
+    /**
+     * Set UI view variables in onCreate
+     */
     void setViewVars(){
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -87,18 +93,24 @@ public class RecordAudioActivity extends AppCompatActivity implements View.OnCli
 
 //    toggleEnableDisable()
 
+    /**
+     * Executes when page is opened
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_record_audio);
         setViewVars();
 
+        // Create a new Recorder object
         recobj = new MyRecorder(getCacheDir().toString());
         isPlaying = false;
         isPaused = false;
         showPlayback = false;
 
+        // timer text to show progress
         timer_text = (TextView) findViewById(R.id.timer_text);
+        // Create a Media player object for playback
         m = new MediaPlayer();
 
         runCountdownProgress(new FunctionCallback() {
@@ -109,6 +121,11 @@ public class RecordAudioActivity extends AppCompatActivity implements View.OnCli
 
     }
 
+    /**
+     * Handles all button clicks
+     * Currently - (Record) rec_btn , stop_btn (Playback) play_btn, pause_btn, done_btn
+     * @param v
+     */
     @Override
     public void onClick(View v) {
         boolean isRecording = recobj.isRecording();
@@ -241,6 +258,9 @@ public class RecordAudioActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
+    /**
+     * Executes when recording is stopped
+     */
     void stopStuff(){
         stop_btn.setEnabled(false);
         pr_timer.cancel();
@@ -254,9 +274,12 @@ public class RecordAudioActivity extends AppCompatActivity implements View.OnCli
         group.setVisibility(View.VISIBLE);
     }
 
+    /**
+     * Executes when user clicks on done button, sends intent back to user page with audio file path
+     */
     private void proceed(String audioFile,long duration){
         spinKitView.setVisibility(View.INVISIBLE);
-        Intent i = new Intent(RecordAudioActivity.this, VideoCaptureActivity.class);
+        Intent i = new Intent(RecordAudioActivity.this, UserActivity.class);
         i.putExtra("audio_file_path", audioFile);
         i.putExtra("duration",duration);
         i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -264,6 +287,10 @@ public class RecordAudioActivity extends AppCompatActivity implements View.OnCli
         finish();
     }
 
+    /**
+     * Runs a countdown timer from a start offset in millisecond to 60 seconds and callback function to execute during onFinish
+     * To control progressbar
+     */
     void runCountdownProgress(FunctionCallback func, long startDeltaMilli){
         long tot_time = 60000 - startDeltaMilli;
         pr_timer = new CountDownTimer(tot_time, 10) {
@@ -289,6 +316,9 @@ public class RecordAudioActivity extends AppCompatActivity implements View.OnCli
         };
     }
 
+    /**
+     * Utiliy Interface for runCountdownProgress
+     */
     interface FunctionCallback{
         void onFin();
     }
@@ -318,6 +348,10 @@ public class RecordAudioActivity extends AppCompatActivity implements View.OnCli
         }
     });
 
+    /**
+     * Checks if permission is granted for audio record, else prompts user for permission.
+     * Returns true if granted, false otherwise
+     */
     private boolean check_permission(){
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) ==
                 PackageManager.PERMISSION_GRANTED) {

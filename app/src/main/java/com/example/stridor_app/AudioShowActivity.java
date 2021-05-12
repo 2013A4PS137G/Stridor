@@ -12,6 +12,7 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.widget.MediaController;
 
+
 public class AudioShowActivity extends AppCompatActivity implements MediaPlayer.OnPreparedListener, MediaController.MediaPlayerControl{
 
     private static final String TAG = "AudioPlayer";

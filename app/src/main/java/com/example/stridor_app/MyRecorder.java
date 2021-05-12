@@ -19,7 +19,10 @@ import java.nio.ShortBuffer;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
+/**
+ * Recorder class built on top of androids' Audio Record to record raw 16 bit PCM data at 16000 sampling rate, 1 channel and save to wav file in storage
+ * Has controls to start and stop recording
+ */
 public class MyRecorder {
     private static final int RECORDER_BPP = 16;
     private static final String AUDIO_RECORDER_FILE_EXT_WAV = ".wav";
@@ -40,21 +43,33 @@ public class MyRecorder {
     public String final_file_name = "";
     public long duration = 0;
 
-    public MyRecorder(String ss) {
+    /** constructor
+     *
+     * @param file_path
+     */
+    public MyRecorder(String file_path) {
         bufferSize = AudioRecord.getMinBufferSize
                 (RECORDER_SAMPLERATE,RECORDER_CHANNELS,RECORDER_AUDIO_ENCODING)*3;
 
         audioData = new short [bufferSize]; //short array that pcm data is put into.
         isRecording = false;
-        filepath = ss;
+        filepath = file_path;
         final_file_name = "";
     }
 
+    /**
+     * Gets recorded Audio filename
+     * @return
+     */
     public String getFilename(){
         return final_file_name;
     }
 
-    public String getTSFilename(){
+    /**
+     * Utility function: adds timestamp to recording name
+     * @return
+     */
+    private String getTSFilename(){
         File file = new File(filepath,AUDIO_RECORDER_FOLDER);
 
         if (!file.exists()) {
@@ -85,6 +100,10 @@ public class MyRecorder {
         return (tempFile.getAbsolutePath());
     }
 
+    /**
+     * Post processing after writing Audio file. set read-write-execute permissions
+     * @return
+     */
     public void postProcessing(){
         File f = new File(filepath,AUDIO_RECORDER_FOLDER);
         if(f.exists()){
@@ -100,6 +119,9 @@ public class MyRecorder {
         }
     }
 
+    /**
+     * starts recording and dumps raw audio data to file
+     */
     public void startRecording() {
         isRecording = true;
 
@@ -122,6 +144,9 @@ public class MyRecorder {
         recordingThread.start();
     }
 
+    /**
+     * dumps raw audio data to file
+     */
     private void writeAudioDataToFile() {
         byte data[] = new byte[bufferSize];
         String filename = getTempFilename();
@@ -158,6 +183,9 @@ public class MyRecorder {
         }
     }
 
+    /**
+     * stops recording, deletes temp file, writes wave headers and renames audio file, post processing
+     */
     public void stopRecording() {
         isRecording = false;
 
@@ -178,11 +206,17 @@ public class MyRecorder {
         postProcessing();
     }
 
+    /**
+     * deletes temp file
+     */
     private void deleteTempFile() {
         File file = new File(getTempFilename());
         file.delete();
     }
 
+    /**
+     * copies wave data and write wave headers to new file
+     */
     private void copyWaveFile(String inFilename,String outFilename){
         FileInputStream in = null;
         FileOutputStream out = null;
@@ -268,6 +302,16 @@ public class MyRecorder {
             // My Edit end
     * Code for normalizing waveform bw -1 to 1*/
 
+    /**
+     * writes wave headers
+     * @param out
+     * @param totalAudioLen
+     * @param totalDataLen
+     * @param longSampleRate
+     * @param channels
+     * @param byteRate
+     * @throws IOException
+     */
     private void WriteWaveFileHeader(
             FileOutputStream out, long totalAudioLen,
             long totalDataLen, long longSampleRate, int channels,
@@ -323,10 +367,18 @@ public class MyRecorder {
         out.write(header, 0, 44);
     }
 
+    /**
+     * check if object is recording
+     * @return
+     */
     public boolean isRecording() {
         return isRecording;
     }
 
+    /**
+     * gets duration of recording
+     * @return
+     */
     public long getDuration(){
         return this.duration;
     }

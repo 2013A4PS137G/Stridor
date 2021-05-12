@@ -9,7 +9,17 @@ import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 
+/**
+ * For getting True Video path after getting temp uri from camera app
+ */
 public class Utils {
+
+    /**For getting True Video path after getting temp uri from camera app
+     *
+     * @param context
+     * @param uri
+     * @return
+     */
     public static String getPathFromURI(final Context context, final Uri uri) {
 
         final boolean isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;

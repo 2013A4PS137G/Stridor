@@ -25,6 +25,9 @@ import java.util.HashMap;
 import java.util.UUID;
 
 
+/**
+ * Utility class to handle all Firebase DB operations
+ */
 public final class DBManager {
 
     private static FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -34,9 +37,22 @@ public final class DBManager {
     private static DatabaseReference persistUsersRef;
     private static DatabaseReference persistRecordingsRef;
 
+    /**
+     * constructor
+     */
     private DBManager() {
     }
 
+    /**
+     * Inserts a user to table Users
+     * @param NAME
+     * @param MOBILE
+     * @param GENDER
+     * @param DOB
+     * @param HEIGHT
+     * @param WEIGHT
+     * @param ILLNESS
+     */
     public static void insertUser(String NAME, String MOBILE, String GENDER, String DOB, int HEIGHT, int WEIGHT, String ILLNESS) {
         String uID = UUID.randomUUID().toString().replace("-", "");
         HashMap<String,Object> upd = new HashMap<>();
@@ -53,6 +69,16 @@ public final class DBManager {
         persistUsersRef.updateChildren(upd);
     }
 
+    /**
+     * Inserts a Recording to table Recordings for user with UID
+     * @param UID
+     * @param time_stamp
+     * @param MEDIA
+     * @param PATH
+     * @param TASK
+     * @param duration
+     * @param rec_id
+     */
     public static void insertRecording(String UID,String time_stamp,String MEDIA, String PATH, String TASK, String duration, String rec_id) {
         recordingsRef = database.getReference("Recordings").child(iid + "/" + UID);
         recordingsRef.keepSynced(true);
@@ -72,10 +98,17 @@ public final class DBManager {
         uploadFile(UID,PATH,time_stamp,MEDIA,TASK);
     }
 
+    /**
+     * Interface to use for async DataSnapshot update
+     */
     public interface DataSnapshotCallback {
         void onSuccess(DataSnapshot value);
     }
 
+    /**
+     * Fetch list of users from firebase DB and apply callback on success
+     * @param callback
+     */
     public static void fetchUsers(DataSnapshotCallback callback) {
         FirebaseInstallations.getInstance().getId().addOnCompleteListener(new OnCompleteListener<String>() {
             @Override
@@ -102,6 +135,11 @@ public final class DBManager {
         });
     }
 
+    /**
+     * Fetch user node with _id and apply callback on success
+     * @param _id
+     * @param callback
+     */
     public static void fetchUser(String _id,DataSnapshotCallback callback) {
         DatabaseReference userRef = usersRef.child(_id);
         ValueEventListener user_listener = new ValueEventListener() {
@@ -118,7 +156,11 @@ public final class DBManager {
         userRef.addListenerForSingleValueEvent(user_listener);
     }
 
-
+    /**
+     * Fetch list of recordings from for user with uid = _id and apply callback on success
+     * @param _id
+     * @param callback
+     */
     public static void fetchRecordings(String _id,DataSnapshotCallback callback) {
         recordingsRef = database.getReference("Recordings/" + iid + "/" + _id);
         recordingsRef.keepSynced(true);
@@ -137,18 +179,33 @@ public final class DBManager {
         recordingsRef.addValueEventListener(recordings_listener);
     }
 
-
+    /**
+     * delete user with uid = _id
+     * @param _id
+     */
     public static void deleteUser(String _id) {
         usersRef.child(_id).setValue(null);
         recordingsRef = database.getReference("Recordings").child(iid).child(_id);
         recordingsRef.setValue(null);
     }
 
+    /**
+     * delete Recording rec_name for user with uid = _id
+     * @param _id
+     */
     public static void deleteRecording(String _id, String rec_name) {
         recordingsRef = database.getReference("Recordings").child(iid).child(_id);
         recordingsRef.child(rec_name).setValue(null);
     }
 
+    /**
+     * Uploads file to firebase storage
+     * @param uid
+     * @param file_path
+     * @param time_stamp
+     * @param MEDIA
+     * @param TASK
+     */
     public static void uploadFile(String uid, String file_path,String time_stamp,String MEDIA, String TASK){
         StorageReference ref = FirebaseStorage.getInstance().getReference();
 

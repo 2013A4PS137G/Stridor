@@ -11,6 +11,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 
 
+/**
+ * UI Card for a Recording in User page
+ */
 public class RecordingCard extends Card{
 
     private Context context;
@@ -22,6 +25,17 @@ public class RecordingCard extends Card{
     private String rec_id;
     private String uid;
 
+    /**
+     * constructor
+     * @param context
+     * @param uid
+     * @param time_stamp
+     * @param media
+     * @param uriPath
+     * @param task
+     * @param duration
+     * @param rec_id
+     */
     public RecordingCard(Context context,String uid,String time_stamp, String media, String uriPath, String task, String duration, String rec_id) {
         this.context = context;
         this.uid = uid;
@@ -33,6 +47,10 @@ public class RecordingCard extends Card{
         this.rec_id = rec_id;
     }
 
+    /**
+     * Sets values in Card's view
+     * @param row
+     */
     @Override
     public void setView(View row){
         ImageView media_img = (ImageView) row.findViewById(R.id.media_img);
@@ -70,34 +88,66 @@ public class RecordingCard extends Card{
         });
     }
 
+    /**
+     * getter
+     * @return
+     */
     public String getTime_stamp() {
         return time_stamp;
     }
 
+    /**setter
+     *
+     * @param time_stamp
+     */
     public void setTime_stamp(String time_stamp) {
         this.time_stamp = time_stamp;
     }
 
+    /**
+     * getter
+     * @return
+     */
     public String getMedia() {
         return media;
     }
 
+    /**setter
+     *
+     * @param media
+     */
     public void setMedia(String media) {
         this.media = media;
     }
 
+    /**
+     * getter
+     * @return
+     */
     public String getUriPath() {
         return uriPath;
     }
 
+    /**setter
+     *
+     * @param uriPath
+     */
     public void setUriPath(String uriPath) {
         this.uriPath = uriPath;
     }
 
+    /**
+     * getter
+     * @return
+     */
     public String getTask() {
         return task;
     }
 
+    /**setter
+     *
+     * @param task
+     */
     public void setTask(String task) {
         this.task = task;
     }

@@ -12,11 +12,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-
+/**
+ *  Gives user all the information about the application and purpose
+ *  TODO: XML to be filled with content
+ *  Asks for Consent if it not given and then displays content
+ *
+ */
 public class InfoActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button view_users_btn;
 
+    /**
+     * Executes when page is opened
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,10 +53,15 @@ public class InfoActivity extends AppCompatActivity implements View.OnClickListe
         view_users_btn.setOnClickListener(this);
     }
 
-
+    /**
+     * Handles all button clicks
+     * Currently, only view_users_btn
+     * @param v
+     */
     @Override
     public void onClick(View v) {
-        Intent i = new Intent(InfoActivity.this,MainActivity.class);
+        // Move to Users Activity when clicked
+        Intent i = new Intent(InfoActivity.this,UsersActivity.class);
         startActivity(i);
     }
 }

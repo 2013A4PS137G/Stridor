@@ -2,6 +2,10 @@ package com.example.stridor_app;
 import android.text.InputFilter;
 import android.text.Spanned;
 
+/**
+ * Utility function to filter Min/Max value
+ * used in validating user form data in UsersActivity
+ */
 public class InputFilterMinMax implements InputFilter {
 
     private long min, max;
